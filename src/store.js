@@ -1,6 +1,6 @@
 import { createStore } from 'redux'
 
-import { reducer } from './state/counter'
+import { reducer } from './state/todo'
 
 export const store = createStore(
   reducer,
