@@ -3,6 +3,15 @@ import { createStore } from './createStore'
 export const INC = 'INC'
 export const DEC = 'DEC'
 
+export const createActionInc = (delta) => ({
+  type: INC,
+  payload: delta
+})
+export const createActionDec = (delta) => ({
+  type: DEC,
+  payload: delta
+})
+
 const initialState = {
   number: 0
 }

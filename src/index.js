@@ -1,19 +1,9 @@
-import { store, INC, DEC } from './store'
+import { store, createActionInc, createActionDec } from './store'
 
 console.log('Hello in headless counter app!')
 
-const inc = () => {
-  store.dispatch({
-    type: INC,
-    payload: 1
-  })
-}
-const dec = () => {
-  store.dispatch({
-    type: DEC,
-    payload: 1
-  })
-}
+const inc = () => store.dispatch(createActionInc(1))
+const dec = () => store.dispatch(createActionDec(1))
 
 const listener = () => render()
 
