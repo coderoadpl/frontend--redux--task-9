@@ -1,27 +1,20 @@
 import React from 'react'
 
-import { store } from './store'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { createActionInc, createActionDec } from './state/counter'
 
-const incHandler = (delta = 1) => { store.dispatch(createActionInc(delta)) }
-const decHandler = (delta = 1) => { store.dispatch(createActionDec(delta)) }
-
 export const Counter = () => {
-  const [, forceUpdate] = React.useState(false)
+  const dispatch = useDispatch()
+  const number = useSelector((state) => state.number)
 
-  const currentState = store.getState()
-  const { number } = currentState
-
-  React.useEffect(() => {
-    const listener = () => forceUpdate((prevState) => !prevState)
-
-    store.subscribe(listener)
-  }, [])
+  const incHandler = React.useCallback((delta = 1) => { dispatch(createActionInc(delta)) }, [dispatch])
+  const decHandler = React.useCallback((delta = 1) => { dispatch(createActionDec(delta)) }, [dispatch])
 
   return (
     <div>
       <h1>
-        { number }
+        {number}
       </h1>
       <button
         onClick={() => incHandler()}
