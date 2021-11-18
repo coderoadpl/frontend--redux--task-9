@@ -1,4 +1,4 @@
-import { createStore } from './createStore'
+import { createStore } from 'redux'
 
 // action types - names for actions
 export const INC = 'INC'
