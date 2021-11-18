@@ -1,5 +1,8 @@
 import { createStore } from './createStore'
 
+export const INC = 'INC'
+export const DEC = 'DEC'
+
 const initialState = {
   number: 0
 }
@@ -8,12 +11,12 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   // own logic
   switch (action.type) {
-    case 'INC':
+    case INC:
       return {
         ...state,
         number: state.number + action.payload
       }
-    case 'DEC':
+    case DEC:
       return {
         ...state,
         number: state.number - action.payload

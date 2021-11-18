@@ -1,16 +1,16 @@
-import { store } from './store'
+import { store, INC, DEC } from './store'
 
 console.log('Hello in headless counter app!')
 
 const inc = () => {
   store.dispatch({
-    type: 'INC',
+    type: INC,
     payload: 1
   })
 }
 const dec = () => {
   store.dispatch({
-    type: 'DEC',
+    type: DEC,
     payload: 1
   })
 }
