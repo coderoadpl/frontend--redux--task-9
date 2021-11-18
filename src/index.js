@@ -1,20 +1,28 @@
+import { store } from './store'
+
 console.log('Hello in headless counter app!')
 
-const state = {
-  number: 0
-}
-
 const inc = () => {
-  state.number = state.number + 1
-  render()
+  store.dispatch({
+    type: 'INC',
+    payload: 1
+  })
 }
 const dec = () => {
-  state.number = state.number - 1
-  render()
+  store.dispatch({
+    type: 'DEC',
+    payload: 1
+  })
 }
 
+const listener = () => render()
+
+store.subscribe(listener)
+
 const render = () => {
-  console.log(`Current number is ${state.number}`)
+  const currentState = store.getState()
+  const { number } = currentState
+  console.log(`Current number is ${number}`)
 }
 
 window.inc = inc
