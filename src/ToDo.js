@@ -1,18 +1,29 @@
 import React from 'react'
 
+import { useDispatch, useSelector } from 'react-redux'
+
+import { createActionAdd, createActionDelete, createActionToggleCompleted } from './state/todo'
+
 export const ToDo = () => {
-  const tasks = [
-    {
-      id: 0,
-      text: 'Wynieś śmieci',
-      isCompleted: false
-    },
-    {
-      id: 1,
-      text: 'Zmyj naczynia',
-      isCompleted: true
-    }
-  ]
+  const [newTaskText, setNewTaskText] = React.useState('')
+
+  const dispatch = useDispatch()
+  const tasks = useSelector((state) => state.tasks)
+
+  const addTaskHandler = React.useCallback((e) => {
+    e.preventDefault()
+    if (newTaskText === '') return
+    dispatch(createActionAdd(newTaskText))
+    setNewTaskText('')
+  }, [dispatch, newTaskText])
+
+  const deleteTaskHandler = React.useCallback((taskId) => {
+    dispatch(createActionDelete(taskId))
+  }, [dispatch])
+
+  const toggleCompletedHandler = React.useCallback((taskId) => {
+    dispatch(createActionToggleCompleted(taskId))
+  }, [dispatch])
 
   return (
     <div
@@ -27,8 +38,11 @@ export const ToDo = () => {
           display: 'flex',
           justifyContent: 'space-between'
         }}
+        onSubmit={addTaskHandler}
       >
         <input
+          value={newTaskText}
+          onChange={(e) => setNewTaskText(e.target.value)}
           placeholder={'Type new to do item...'}
         />
         <button>
@@ -53,10 +67,13 @@ export const ToDo = () => {
                     style={{
                       textDecoration: task.isCompleted ? 'line-through' : 'none'
                     }}
+                    onClick={() => toggleCompletedHandler(task.id)}
                   >
                     {task.text}
                   </span>
-                  <button>
+                  <button
+                    onClick={() => deleteTaskHandler(task.id)}
+                  >
                     DELETE
                   </button>
                 </div>
