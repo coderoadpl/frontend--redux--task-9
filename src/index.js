@@ -1,4 +1,6 @@
-import { store, createActionInc, createActionDec } from './store'
+import { store } from './store'
+
+import { createActionInc, createActionDec } from './state/counter'
 
 console.log('Hello in headless counter app!')
 
