@@ -2,8 +2,8 @@ import { store, createActionInc, createActionDec } from './store'
 
 console.log('Hello in headless counter app!')
 
-const inc = () => store.dispatch(createActionInc(1))
-const dec = () => store.dispatch(createActionDec(1))
+const incHandler = (delta = 1) => store.dispatch(createActionInc(delta))
+const decHandler = (delta = 1) => store.dispatch(createActionDec(delta))
 
 const listener = () => render()
 
@@ -15,7 +15,7 @@ const render = () => {
   console.log(`Current number is ${number}`)
 }
 
-window.inc = inc
-window.dec = dec
+window.inc = incHandler
+window.dec = decHandler
 
 render()

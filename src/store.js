@@ -1,8 +1,10 @@
 import { createStore } from './createStore'
 
+// action types - names for actions
 export const INC = 'INC'
 export const DEC = 'DEC'
 
+// action creators - utilities to make actions easier
 export const createActionInc = (delta) => ({
   type: INC,
   payload: delta
@@ -12,6 +14,7 @@ export const createActionDec = (delta) => ({
   payload: delta
 })
 
+// state that will be applied on `@@INIT` action
 const initialState = {
   number: 0
 }
