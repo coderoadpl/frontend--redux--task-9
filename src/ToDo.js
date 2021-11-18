@@ -8,7 +8,7 @@ export const ToDo = () => {
   const [newTaskText, setNewTaskText] = React.useState('')
 
   const dispatch = useDispatch()
-  const tasks = useSelector((state) => state.tasks)
+  const tasks = useSelector((state) => state.todo.tasks)
 
   const addTaskHandler = React.useCallback((e) => {
     e.preventDefault()

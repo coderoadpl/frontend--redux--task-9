@@ -6,7 +6,7 @@ import { createActionInc, createActionDec } from './state/counter'
 
 export const Counter = () => {
   const dispatch = useDispatch()
-  const number = useSelector((state) => state.number)
+  const number = useSelector((state) => state.counter.number)
 
   const incHandler = React.useCallback((delta = 1) => { dispatch(createActionInc(delta)) }, [dispatch])
   const decHandler = React.useCallback((delta = 1) => { dispatch(createActionDec(delta)) }, [dispatch])
